@@ -8,19 +8,20 @@ public class BoardManager : MonoBehaviour
     public int Width = 4;
     public int Height = 4;
     public Point PointPrefab;
+    public Line LinePrefab;
+
+    private Line[][] LineArray;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         GenerateBoard();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -32,17 +33,39 @@ public class BoardManager : MonoBehaviour
         {
             for (int j = 0; j < Width; j++)
             {
-                var p = new Vector2(i, j);
-                Instantiate(PointPrefab, p, Quaternion.identity);
+                var p = new Vector2(i*2, j*2);             //Posicion para ubicar puntos
+                var ldown = new Vector2(i * 2, j * 2 - 1); //Posicion para ubicar lineas verticales
+                var lleft = new Vector2(i * 2 - 1, j * 2); //Posicion para ubicar lineas horizontales
+                
+                Instantiate(PointPrefab, p, Quaternion.identity); //Ubicamos los puntos del tablero
+
+                if (i < Height - (Height - 1)) //Condicional para ubicar las lineas horizontales
+                {
+
+                }
+                else
+                {
+
+                    Instantiate(LinePrefab, lleft, Quaternion.Euler(0f, 0f, 90f)); //Quaternion.Euler se encarga de rotar el LinePrefab
+                }
+
+                if (j < Width -(Width -1 )) //Condicional para ubicar las lineas verticales
+                {
+                    
+                }
+                else
+                {
+                    Instantiate(LinePrefab, ldown, Quaternion.identity);
+                }
             }
         }
 
-        var center = new Vector2((float)Height / 2 - 0.5f, (float)Width / 2 - 0.5f);
+        var center = new Vector2((float)Height*2 / 2 - 0.5f, (float)Width*2 / 2 - 0.5f);
 
         Camera.main.transform.position = new Vector3(center.x, center.y, -20);
     }
 
-    public void SetPoint(Point p)
+    public void SetLine(Line l)
     {
         GameManager.Instance.SwitchPlayer();
     }

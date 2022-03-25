@@ -198,6 +198,7 @@ MonoBehaviour:
   Width: 4
   Height: 4
   PointPrefab: {fileID: 1947138635170261259, guid: caa192e0df35eb649a19b953901a5132, type: 3}
+  LinePrefab: {fileID: 787433482776323104, guid: e32ca34bdbf47cb4e84d12af09030935, type: 3}
 --- !u!4 &638112977
 Transform:
   m_ObjectHideFlags: 0
@@ -265,7 +266,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.94
+  orthographic size: 5.43
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
