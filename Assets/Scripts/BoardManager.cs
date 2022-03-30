@@ -149,12 +149,14 @@ public class BoardManager : MonoBehaviour
                 if (scoreOne > this.SquareList.Count/2)
                 {
                     SceneManager.LoadScene("OneWin");
-                    Debug.Log("Gana Jugador 1");
                 }
                 if (scoreTwo > this.SquareList.Count / 2)
                 {
                     SceneManager.LoadScene("TwoWin");
-                    Debug.Log("Gana Jugador 2");
+                }
+                if (scoreOne == this.SquareList.Count / 2 && scoreTwo == this.SquareList.Count / 2)
+                {
+                    SceneManager.LoadScene("TieWin");
                 }
                 UIManager.Instance.UpdateScores(scoreOne, scoreTwo);
             }

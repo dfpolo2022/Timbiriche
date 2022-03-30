@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OneWin.unity
     guid: de2468c5128409d4bbdbffb881f1f0f7
+  - enabled: 1
+    path: Assets/Scenes/TieWin.unity
+    guid: c67cc88718f59aa4a928600d3723bb24
   m_configObjects: {}
