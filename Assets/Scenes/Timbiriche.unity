@@ -301,10 +301,14 @@ MonoBehaviour:
   PointPrefab: {fileID: 1947138635170261259, guid: caa192e0df35eb649a19b953901a5132, type: 3}
   LinePrefab: {fileID: 787433482776323104, guid: e32ca34bdbf47cb4e84d12af09030935, type: 3}
   SquarePrefab: {fileID: 1074668998716016575, guid: f4f4150ebdf5e2c4d83653aaffeac3ed, type: 3}
+  CirclePrefab: {fileID: 4656084570276146007, guid: 47c954d9f8b28ea4bb373338aa144f4f, type: 3}
+  DiamondPrefab: {fileID: 3794206231037149562, guid: 02a4e0a35af3af64f9641b5d7c4894c4, type: 3}
   scoreOne: 0
   scoreTwo: 0
   LineList: []
   SquareList: []
+  CircleList: []
+  DiamondList: []
 --- !u!4 &638112977
 Transform:
   m_ObjectHideFlags: 0

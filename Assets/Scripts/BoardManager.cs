@@ -11,12 +11,16 @@ public class BoardManager : MonoBehaviour
     public Point PointPrefab;
     public Line LinePrefab;
     public Square SquarePrefab;
+    public Square CirclePrefab;
+    public Square DiamondPrefab;
     public bool[,] score;
     public int scoreOne = 0;
     public int scoreTwo = 0;
 
     public List <Line> LineList;
     public List <Square> SquareList;
+    public List<Square> CircleList;
+    public List<Square> DiamondList;
     private int max;
 
     private void Awake()
@@ -47,9 +51,9 @@ public class BoardManager : MonoBehaviour
             {
                 var p = new Vector2(j*2, i*2);             //Posicion para ubicar puntos
                 var s = new Vector2(j * 2 - 1, i * 2 - 1); //Posicion para ubicar cuadrados
+                var w = new Vector2(j * 2 - 1, i * 2);
                 
                 Instantiate(PointPrefab, p, Quaternion.identity); //Ubicamos los puntos del tablero
-
                 if (i < Height - (Height - 1) || j < Width - (Width - 1))
                 {
 
@@ -57,6 +61,8 @@ public class BoardManager : MonoBehaviour
                 else
                 {
                     SquareList.Add(Instantiate(SquarePrefab, s, Quaternion.identity));
+                    CircleList.Add(Instantiate(CirclePrefab, w, Quaternion.identity));
+                    DiamondList.Add(Instantiate(DiamondPrefab, w, Quaternion.identity));
                 }
             }
         }
@@ -117,11 +123,66 @@ public class BoardManager : MonoBehaviour
             int fila = i / divisor;
             if (this.LineList[i].isActive() && this.LineList[i+Height-1].isActive() && this.LineList[Height*(Width-1)+fila+i].isActive() && this.LineList[Height * (Width - 1)+fila + i+1].isActive())
             {
+                if (PlayerPrefs.GetInt("iconOne") == 0 && GameManager.Instance.GetGameState == GameManager.GameState.player1)
+                {
+                Destroy(DiamondList[i]);
+                Destroy(CircleList[i]);
                 this.SquareList[i].AddSides();
                 this.SquareList[i].AddSides();
                 this.SquareList[i].AddSides();
                 this.SquareList[i].AddSides();
                 score[i,0] = true;
+                }
+                if (PlayerPrefs.GetInt("iconTwo") == 0 && GameManager.Instance.GetGameState == GameManager.GameState.player2)
+                {
+                    Destroy(DiamondList[i]);
+                    Destroy(CircleList[i]);
+                    this.SquareList[i].AddSides();
+                    this.SquareList[i].AddSides();
+                    this.SquareList[i].AddSides();
+                    this.SquareList[i].AddSides();
+                    score[i, 0] = true;
+                }
+                if (PlayerPrefs.GetInt("iconOne") == 1 && GameManager.Instance.GetGameState == GameManager.GameState.player1)
+                {
+                    Destroy(DiamondList[i]);
+                    Destroy(SquareList[i]);
+                    this.CircleList[i].AddSides();
+                    this.CircleList[i].AddSides();
+                    this.CircleList[i].AddSides();
+                    this.CircleList[i].AddSides();
+                    score[i, 0] = true;
+                }
+                if (PlayerPrefs.GetInt("iconTwo") == 1 && GameManager.Instance.GetGameState == GameManager.GameState.player2)
+                {
+                    Destroy(DiamondList[i]);
+                    Destroy(SquareList[i]);
+                    this.CircleList[i].AddSides();
+                    this.CircleList[i].AddSides();
+                    this.CircleList[i].AddSides();
+                    this.CircleList[i].AddSides();
+                    score[i, 0] = true;
+                }
+                if (PlayerPrefs.GetInt("iconOne") == 2 && GameManager.Instance.GetGameState == GameManager.GameState.player1)
+                {
+                    Destroy(CircleList[i]);
+                    Destroy(SquareList[i]);
+                    this.DiamondList[i].AddSides();
+                    this.DiamondList[i].AddSides();
+                    this.DiamondList[i].AddSides();
+                    this.DiamondList[i].AddSides();
+                    score[i, 0] = true;
+                }
+                if (PlayerPrefs.GetInt("iconTwo") == 2 && GameManager.Instance.GetGameState == GameManager.GameState.player2)
+                {
+                    Destroy(CircleList[i]);
+                    Destroy(SquareList[i]);
+                    this.DiamondList[i].AddSides();
+                    this.DiamondList[i].AddSides();
+                    this.DiamondList[i].AddSides();
+                    this.DiamondList[i].AddSides();
+                    score[i, 0] = true;
+                }
             }
         }
     }
